@@ -67,6 +67,13 @@ io.on("connection",async  (socket) => {
     io.to(clientId.socketId).emit("broadcastFromAdmin",{message:"This your admin speaking"});
   })
 
+  socket.on("notificationToSent",async (data)=>{
+    console.log("Message to broadcast: ",data);
+    let clientId = await geteUserSocket(data.userEmail);
+    console.log(clientId)
+    io.to(clientId.socketId).emit("notificationFromAdmin",{count:data.count});
+  })
+
 });
 
 

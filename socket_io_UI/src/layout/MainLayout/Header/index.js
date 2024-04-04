@@ -4,17 +4,24 @@ import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase } from '@mui/material';
 
+import { useSelector } from 'react-redux';
+
+
 // project imports
 import LogoSection from '../LogoSection';
 
 
 // assets
 import { IconMenu2 } from '@tabler/icons';
+import { useState } from 'react';
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
 const Header = ({ handleLeftDrawerToggle }) => {
     const theme = useTheme();
+
+    const [count, setcount] = useState(0);
+    const genereal = useSelector((state) => state.generalReducer);
 
     return (
         <>
@@ -30,6 +37,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
             >
                 <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
                     <LogoSection />
+                    {genereal.count}
                 </Box>
                 <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
                     <Avatar
